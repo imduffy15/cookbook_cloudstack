@@ -1,9 +1,3 @@
-# 0.1.0
+# 0.0.1
 
 Initial release of cloudstack
-
-* Enhancements
-  * an enhancement
-
-* Bug Fixes
-  * a bug fix

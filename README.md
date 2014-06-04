@@ -1,6 +1,8 @@
-# cloudstack-cookbook
+# This project is a work in progress.
 
-TODO: Enter the cookbook description here.
+# Cloudstack-Cookbook
+
+The aim of this project is ti supply a fully functional devcloud (cloudstack sandbox) environment using multiple recipes.
 
 ## Supported Platforms
 
@@ -37,15 +39,6 @@ Include `cloudstack` in your node's `run_list`:
 }
 ```
 
-## Contributing
-
-1. Fork the repository on Github
-2. Create a named feature branch (i.e. `add-new-recipe`)
-3. Write your change
-4. Write tests for your change (if applicable)
-5. Run the tests, ensuring they all pass
-6. Submit a Pull Request
-
 ## License and Authors
 
-Author:: YOUR_NAME (<YOUR_EMAIL>)
+Author:: Ian Duffy (duffy@apache.org)

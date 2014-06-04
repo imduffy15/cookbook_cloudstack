@@ -1,8 +1,8 @@
 name             'cloudstack'
-maintainer       'YOUR_NAME'
-maintainer_email 'YOUR_EMAIL'
-license          'All rights reserved'
+maintainer       'Ian Duffy'
+maintainer_email 'duffy@apache.org'
+license          'Apache 2.0'
 description      'Installs/Configures cloudstack'
 long_description 'Installs/Configures cloudstack'
-version          '0.1.0'
+version          '0.0.1'
 
