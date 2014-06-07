@@ -25,6 +25,7 @@ execute "cloud-install-sys-tmplt -m ~/ -u http://192.168.56.1:8000/systemvmtempl
 end
 
 include_recipe "mysql::client"
+include_recipe "mysql::server"
 
 include_recipe "co-nfs::server"
 include_recipe "co-nfs::exports"
