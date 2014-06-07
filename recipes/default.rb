@@ -21,7 +21,7 @@ directory "/exports/secondary" do
 	recursive true
 end
 
-execute "cloud-install-sys-tmplt -m ~/ -u http://192.168.56.1:8000/systemvmtemplate-xen.vhd.bz2 -h xenserver -t 1" do
+execute "cloud-install-sys-tmplt -m /exports/secondary -u http://192.168.56.1:8000/systemvmtemplate-xen.vhd.bz2 -h xenserver -t 1" do
 end
 
 include_recipe "mysql::client"
