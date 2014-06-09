@@ -34,7 +34,7 @@ node["cloudstack"]["systemvms"].each do |systemvm|
 
 	execute "./cloud-install-sys-tmplt -m #{node["cloudstack"]["storage"]["secondary"]} -f #{filename} -h #{systemvm["hypervisor"]} -t #{systemvm["id"]}" do
  		cwd "#{node["cloudstack"]["storage"]["temporary"]}"
-		not_if { ::File.directory?("#{node["cloudstack"]["storage"]["secondary"]}/#{systemvm["id"]}") }
+		not_if { ::File.directory?("#{node["cloudstack"]["storage"]["secondary"]}/template/tmpl/#{systemvm["id"]}") }
 	end
 end
 
