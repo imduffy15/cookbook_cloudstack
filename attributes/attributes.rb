@@ -1,3 +1,13 @@
+default["cloudstack"]["systemvms"] = [
+	{
+		"id" => 1,
+		"hypervisor" => "xenserver",
+		"url" => "http://download.cloud.com/templates/4.3/systemvm64template-2014-01-14-master-xen.vhd.bz2"
+	}
+]
+
+default["cloudstack"]["storage"]["secondary"] = "/exports/secondary"
+
 default["nfs"]["exports"] = [
 	"/exports *(rw,async,no_root_squash)"
 ]

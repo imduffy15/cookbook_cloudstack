@@ -13,8 +13,12 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
   config.vm.hostname = "cloudstack-berkshelf"
 
+  config.cache.scope = :box
+  config.cache.auto_detect = true
+
   # Set the version of chef to install using the vagrant-omnibus plugin
   config.omnibus.chef_version = :latest
+  config.omnibus.cache_packages = true
 
   # Every Vagrant virtual environment requires a box to build off of.
   config.vm.box = "opscode_centos-6.4_provisionerless"
