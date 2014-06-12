@@ -4,38 +4,38 @@
 #
 
 node["cloudstack"]["storage"].each_pair do |index, path|
-	directory "#{path}" do
-		action :create
-		mode 0755
-		recursive true
-	end
+  directory "#{path}" do
+    action :create
+    mode 0755
+    recursive true
+  end
 end
 
 cookbook_file "cloud-install-sys-tmplt" do
-	action :create_if_missing
-	mode 0755
-	path "#{node["cloudstack"]["storage"]["temporary"]}/cloud-install-sys-tmplt"
+  action :create_if_missing
+  mode 0755
+  path "#{node["cloudstack"]["storage"]["temporary"]}/cloud-install-sys-tmplt"
 end
 
 cookbook_file "createtmplt.sh" do
-	action :create_if_missing
-	mode 0755
-	path "#{node["cloudstack"]["storage"]["temporary"]}/createtmplt.sh"
+  action :create_if_missing
+  mode 0755
+  path "#{node["cloudstack"]["storage"]["temporary"]}/createtmplt.sh"
 end
 
 node["cloudstack"]["systemvms"].each do |systemvm|
-	
-	filename = "#{systemvm['url']}".split('/').last
 
-	remote_file "#{node["cloudstack"]["storage"]["temporary"]}/#{filename}" do
-	  action :create_if_missing
-	  source "#{systemvm['url']}"
-	end
+  filename = "#{systemvm['url']}".split('/').last
 
-	execute "./cloud-install-sys-tmplt -m #{node["cloudstack"]["storage"]["secondary"]} -f #{filename} -h #{systemvm["hypervisor"]} -t #{systemvm["id"]}" do
- 		cwd "#{node["cloudstack"]["storage"]["temporary"]}"
-		not_if { ::File.directory?("#{node["cloudstack"]["storage"]["secondary"]}/template/tmpl/#{systemvm["id"]}") }
-	end
+  remote_file "#{node["cloudstack"]["storage"]["temporary"]}/#{filename}" do
+    action :create_if_missing
+    source "#{systemvm['url']}"
+  end
+
+  execute "./cloud-install-sys-tmplt -m #{node["cloudstack"]["storage"]["secondary"]} -f #{filename} -h #{systemvm["hypervisor"]} -t #{systemvm["id"]}" do
+    cwd "#{node["cloudstack"]["storage"]["temporary"]}"
+    not_if { ::File.directory?("#{node["cloudstack"]["storage"]["secondary"]}/template/tmpl/#{systemvm["id"]}") }
+  end
 end
 
 include_recipe "mysql::client"
