@@ -5,7 +5,7 @@ default["cloudstack"]["systemvms"] = [
 	{
 		"id" => 1,
 		"hypervisor" => "xenserver",
-		"url" => "http://download.cloud.com/templates/4.3/systemvm64template-2014-01-14-master-xen.vhd.bz2"
+		"url" => "http://jenkins.buildacloud.org/view/4.4/job/cloudstack-4.4-systemvm/lastSuccessfulBuild/artifact/tools/appliance/dist/systemvmtemplate-unknown-xen.vhd.bz2"
 	}
 ]
 
