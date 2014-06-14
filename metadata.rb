@@ -9,3 +9,6 @@ version '0.0.1'
 depends 'mysql'
 depends 'co-nfs'
 depends 'nat-router'
+
+recipe "cloudstack::default", "Installs and Configures services needed by Apache Cloudstack"
+recipe "cloudstack::sys-tmpl", "Preseeds cloudstack templates"
