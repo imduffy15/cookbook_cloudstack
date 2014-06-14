@@ -5,6 +5,14 @@ VAGRANTFILE_API_VERSION = "2"
 
 Vagrant.require_version ">= 1.5.0"
 
+unless Vagrant.has_plugin?("vagrant-librarian-chef")
+  raise "vagrant-librarian-chef is not installed!"
+end
+
+unless Vagrant.has_plugin?("vagrant-omnibus")
+  raise "vagrant-omnibus is not installed!"
+end
+
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.vm.hostname = "cloudstack-berkshelf"
 
@@ -12,11 +20,13 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
   config.vm.network :private_network, type: "dhcp"
 
-  config.cache.scope = :box
-  config.cache.auto_detect = true
-
   config.omnibus.chef_version = :latest
-  config.omnibus.cache_packages = true
+
+  if Vagrant.has_plugin?("vagrant-cachier")
+    config.cache.scope = :box
+    config.cache.auto_detect = true
+    config.omnibus.cache_packages = true
+  end
 
   config.berkshelf.berksfile_path = "./Berksfile"
   config.berkshelf.enabled = true
@@ -34,7 +44,14 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
                 {
                     "id" => 1,
                     "hypervisor" => "xenserver",
-                    "url" => "http://10.0.2.2:8000/systemvmtemplate-xen.vhd.bz2"
+                    "url" => "http://10.0.2.2:8000/systemvmtemplate-xen.vhd.bz2",
+                    "name" => "routing-1"
+                },
+                {
+                    "id" => 5,
+                    "hypervisor" => "xenserver",
+                    "url" => "http://10.0.2.2:8000/ttylinux_pv.vhd",
+                    "name" => "tiny Linux"
                 }
             ],
             "storage" => {

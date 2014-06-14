@@ -6,7 +6,7 @@ default["cloudstack"]["systemvms"] = [
         "id" => 1,
         "hypervisor" => "xenserver",
         "url" => "http://jenkins.buildacloud.org/view/4.4/job/cloudstack-4.4-systemvm/lastSuccessfulBuild/artifact/tools/appliance/dist/systemvmtemplate-unknown-xen.vhd.bz2",
-	"name" => "routing-1"
+        "name" => "routing-1"
     }
 ]
 
