@@ -1,3 +1,8 @@
+#
+# Cookbook Name:: cloudstack
+# Attributes:: default
+#
+
 default["cloudstack"]["storage"]["temporary"] = "/tmp/cloudstack"
 default["cloudstack"]["storage"]["secondary"] = "/exports/secondary"
 

@@ -5,10 +5,6 @@ VAGRANTFILE_API_VERSION = "2"
 
 Vagrant.require_version ">= 1.5.0"
 
-unless Vagrant.has_plugin?("vagrant-librarian-chef")
-  raise "vagrant-librarian-chef is not installed!"
-end
-
 unless Vagrant.has_plugin?("vagrant-omnibus")
   raise "vagrant-omnibus is not installed!"
 end
