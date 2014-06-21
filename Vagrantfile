@@ -34,26 +34,5 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
         "recipe[cloudstack::default]"
     ]
 
-    chef.json = {
-        "cloudstack" => {
-            "systemvms" => [
-                {
-                    "id" => 1,
-                    "hypervisor" => "xenserver",
-                    "url" => "http://10.0.2.2:8000/systemvmtemplate-xen.vhd.bz2",
-                    "name" => "routing-1"
-                },
-                {
-                    "id" => 5,
-                    "hypervisor" => "xenserver",
-                    "url" => "http://10.0.2.2:8000/ttylinux_pv.vhd",
-                    "name" => "tiny Linux"
-                }
-            ],
-            "storage" => {
-                "temporary" => "/tmp/vagrant-cache/cloudstack"
-            }
-        }
-    }
   end
 end
