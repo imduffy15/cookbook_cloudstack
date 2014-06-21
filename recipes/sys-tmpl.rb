@@ -4,7 +4,7 @@
 #
 
 node["cloudstack"]["storage"].each_pair do |index, path|
-  directory "#{path}" do
+  directory path do
     action :create
     mode 0755
     recursive true
@@ -25,15 +25,15 @@ end
 
 node["cloudstack"]["systemvms"].each do |systemvm|
 
-  filename = "#{systemvm['url']}".split('/').last
+  filename = systemvm['url'].split('/').last
 
   remote_file "#{node["cloudstack"]["storage"]["temporary"]}/#{filename}" do
     action :create_if_missing
-    source "#{systemvm['url']}"
+    source systemvm['url']
   end
 
   execute "./cloud-install-sys-tmplt -m #{node["cloudstack"]["storage"]["secondary"]} -n \"#{systemvm["name"]}\" -f #{filename} -h #{systemvm["hypervisor"]} -t #{systemvm["id"]}" do
-    cwd "#{node["cloudstack"]["storage"]["temporary"]}"
+    cwd node["cloudstack"]["storage"]["temporary"]
     not_if { ::File.directory?("#{node["cloudstack"]["storage"]["secondary"]}/template/tmpl/1/#{systemvm["id"]}") }
   end
 
