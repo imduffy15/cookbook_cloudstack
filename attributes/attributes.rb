@@ -4,11 +4,11 @@
 #
 
 default["cloudstack"]["hypervisors"] = {
-    "XenServer" => 1,
-    "KVM" => 3,
-    "vSphere" => 8,
-    "HyperV" => 9,
-    "LXC" => 10
+    "xenserver" => 1,
+    "kvm" => 3,
+    "vsphere" => 8,
+    "hyperv" => 9,
+    "lxc" => 10
 }
 
 default["cloudstack"]["storage"]["temporary"] = Chef::Config['file_cache_path']

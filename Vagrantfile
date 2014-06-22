@@ -34,5 +34,22 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
         "recipe[cloudstack::default]"
     ]
 
+    chef.json = {
+        'iptables' => {
+            'lans' => %w(eth1 eth2)
+        },
+        "cloudstack" => {
+            "systemvms" => [
+                {
+                    "hypervisor" => "XenServer",
+                    "url" => "http://192.168.56.1/systemvm64template-2014-01-14-master-xen.vhd.bz2",
+                }
+            ],
+            "storage" => {
+                "temporary" => "/tmp/vagrant-cache/cloudstack"
+            }
+        }
+    }
+
   end
 end
