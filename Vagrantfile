@@ -14,8 +14,6 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
   config.vm.box = "chef/centos-6.5"
 
-  config.vm.network :private_network, type: "dhcp"
-
   config.omnibus.chef_version = :latest
 
   if Vagrant.has_plugin?("vagrant-cachier")
@@ -31,25 +29,14 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     chef.cookbooks_path = ["cookbooks"]
 
     chef.run_list = [
-        "recipe[cloudstack::default]"
+        "recipe[cloudstack::simulator]"
     ]
 
-    chef.json = {
-        'iptables' => {
-            'lans' => %w(eth1 eth2)
-        },
-        "cloudstack" => {
-            "systemvms" => [
-                {
-                    "hypervisor" => "XenServer",
-                    "url" => "http://192.168.56.1/systemvm64template-2014-01-14-master-xen.vhd.bz2",
-                }
-            ],
-            "storage" => {
-                "temporary" => "/tmp/vagrant-cache/cloudstack"
-            }
-        }
-    }
+    chef.arguments = '-l debug'
+
+    config.vm.provider :virtualbox do |vb|
+      vb.customize ["modifyvm", :id, "--memory", "2048"]
+    end  
 
   end
 end

@@ -21,6 +21,12 @@ default["cloudstack"]["systemvms"] = [
     }
 ]
 
+default["cloudstack"]["development"]["repository"] = "https://github.com/apache/cloudstack.git"
+default["cloudstack"]["development"]["branch"] = "4.4-forward"
+
+default["cloudstack"]["development"]["source_path"] = "/opt/cloudstack"
+default["cloudstack"]["development"]["log"] = "/opt/cloudstack/cloudstack-simulator.log"
+
 
 default["tomcat"]["install_path"] = "/opt/tomcat"
 default["tomcat"]["version"] = "6.0.33"
@@ -29,6 +35,7 @@ default["tomcat"]["url"] = "http://archive.apache.org/dist/tomcat/tomcat-6/v#{de
 default["maven"]["install_path"] = "/opt/maven"
 default["maven"]["version"] = "3.0.4"
 default["maven"]["url"] = "https://archive.apache.org/dist/maven/binaries/apache-maven-#{default["maven"]["version"]}-bin.tar.gz"
+default["maven"]["repository"] = "/opt/maven/repository"
 
 default["nfs"]["exports"] = [
     "/exports *(rw,async,no_root_squash)"

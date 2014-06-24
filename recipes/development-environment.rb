@@ -10,7 +10,7 @@ bash "Install Development tools" do
   not_if "yum grouplist installed | grep 'Development tools'"
 end
 
-%w{java-1.7.0-openjdk-devel genisoimage ws-commons-util MySQL-python createrepo git}.each do |pkg|
+%w{java-1.7.0-openjdk-devel genisoimage ws-commons-util MySQL-python createrepo git python python-devel nc python-setuptools}.each do |pkg|
   package pkg do
     action :install
   end
@@ -35,10 +35,11 @@ bash 'Extract tomcat' do
   not_if { ::File.exists?(node["tomcat"]["install_path"]) }
 end
 
-cookbook_file "tomcat.sh" do
-  action :create_if_missing
+template '/etc/profile.d/tomcat.sh' do
+  source 'tomcat.erb'
   mode 0755
-  path "/etc/profile.d/tomcat.sh"
+  owner 'root'
+  group 'root'
 end
 
 remote_file "#{node["cloudstack"]["storage"]["temporary"]}/maven.tar.gz" do
@@ -54,8 +55,16 @@ bash 'Extract maven' do
   not_if { ::File.exists?(node["maven"]["install_path"]) }
 end
 
-cookbook_file "maven.sh" do
-  action :create_if_missing
+template '/etc/profile.d/maven.sh' do
+  source 'maven.erb'
   mode 0755
-  path "/etc/profile.d/maven.sh"
+  owner 'root'
+  group 'root'
+end
+
+bash 'Pull down the cloudstack codebase' do
+  code <<-EOH
+    git clone -b #{node["cloudstack"]["development"]["branch"]} --depth 1 #{node["cloudstack"]["development"]["repository"]} #{node["cloudstack"]["development"]["source_path"]}
+  EOH
+  not_if { ::File.exists?(node["cloudstack"]["development"]["source_path"]) }
 end

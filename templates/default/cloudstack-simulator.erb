@@ -1,0 +1,36 @@
+#!/bin/bash
+#
+# cloudstack-simulator CloudStack Simulator
+#
+# chkconfig: 345 50 50
+# description: CloudStack Simulator Service
+
+source /etc/profile.d/maven.sh
+
+CLOUDSTACK_SOURCE=<%= @node["cloudstack"]["development"]["source_path"] %>
+CLOUDSTACK_LOGFILE=<%= @node["cloudstack"]["development"]["log"] %>
+
+case "$1" in
+	start)
+		echo -n "Starting CloudStack Simulator: "
+		cd $CLOUDSTACK_SOURCE
+		nohup mvn -Dsimulator -pl :cloud-client-ui jetty:run > $CLOUDSTACK_LOGFILE 2>&1 &
+		while ! nc -vz localhost 8096; do sleep 10; done
+		echo "OK"
+		;;
+	stop)
+		echo -n "Stopping CloudStack Simulator: "
+		cd $CLOUDSTACK_SOURCE
+		mvn -Dsimulator -pl client jetty:stop
+		echo "OK"
+		;;
+	reload|restart)
+		$0 stop
+		$0 start
+	;;
+	*)
+		echo "Usage: $0 start|stop|restart|reload"
+		exit 1
+esac
+
+exit 0
