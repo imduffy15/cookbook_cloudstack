@@ -60,3 +60,7 @@ bash 'Deploy simulator configuration' do
   EOH
   cwd "#{node["cloudstack"]["development"]["source_path"]}/setup/dev"
 end
+
+service "cloudstack-simulator" do
+  action :stop
+end
