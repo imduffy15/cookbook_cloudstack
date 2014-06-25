@@ -27,6 +27,7 @@ default["cloudstack"]["development"]["branch"] = "4.4-forward"
 default["cloudstack"]["development"]["source_path"] = "/opt/cloudstack"
 default["cloudstack"]["development"]["log"] = "/opt/cloudstack/cloudstack-simulator.log"
 
+default["cloudstack"]["development"]["simulator"]["type"] = "advanced"
 
 default["tomcat"]["install_path"] = "/opt/tomcat"
 default["tomcat"]["version"] = "6.0.33"
