@@ -19,7 +19,7 @@ execute 'chkconfig --level 345 cloudstack-simulator on'
 bash 'Compile Cloudstack' do
   code <<-EOH
     source /etc/profile.d/maven.sh
-    mvn -Pimpatient -Dsimulator -DskipTests install
+    mvn -Pimpatient -Dsimulator -DskipTests -Dcheckstyle.skip=true install -T C1.5
   EOH
   cwd node["cloudstack"]["development"]["source_path"]
 end
