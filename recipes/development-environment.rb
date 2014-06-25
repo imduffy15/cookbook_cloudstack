@@ -10,7 +10,7 @@ bash "Install Development tools" do
   not_if "yum grouplist installed | grep 'Development tools'"
 end
 
-%w{java-1.7.0-openjdk-devel genisoimage ws-commons-util MySQL-python createrepo git python python-devel nc python-setuptools}.each do |pkg|
+%w{java-1.7.0-openjdk-devel genisoimage ws-commons-util MySQL-python createrepo git python python-devel nc python-setuptools unzip}.each do |pkg|
   package pkg do
     action :install
   end
@@ -62,9 +62,21 @@ template '/etc/profile.d/maven.sh' do
   group 'root'
 end
 
-bash 'Pull down the cloudstack codebase' do
+#bash 'Pull down the cloudstack codebase' do
+#  code <<-EOH
+#    git clone -b #{node["cloudstack"]["development"]["branch"]} --depth 1 #{node["cloudstack"]["development"]["repository"]} #{node["cloudstack"]["development"]["source_path"]}
+#  EOH
+#  not_if { ::File.exists?(node["cloudstack"]["development"]["source_path"]) }
+#end
+
+remote_file "#{node["cloudstack"]["storage"]["temporary"]}/cloudstack.tar.gz" do
+  action :create_if_missing
+  source node["cloudstack"]["development"]["url"]
+end
+
+bash 'Extract the cloudstack codebase' do
   code <<-EOH
-    git clone -b #{node["cloudstack"]["development"]["branch"]} --depth 1 #{node["cloudstack"]["development"]["repository"]} #{node["cloudstack"]["development"]["source_path"]}
+    tar xzf "#{node["cloudstack"]["storage"]["temporary"]}/cloudstack.tar.gz" -C #{node["cloudstack"]["development"]["source_path"]} --strip 1
   EOH
   not_if { ::File.exists?(node["cloudstack"]["development"]["source_path"]) }
 end

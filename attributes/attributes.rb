@@ -21,8 +21,10 @@ default["cloudstack"]["systemvms"] = [
     }
 ]
 
-default["cloudstack"]["development"]["repository"] = "https://github.com/apache/cloudstack.git"
+#default["cloudstack"]["development"]["repository"] = "https://github.com/apache/cloudstack.git"
 default["cloudstack"]["development"]["branch"] = "4.4-forward"
+default["cloudstack"]["development"]["url"] = "https://github.com/apache/cloudstack/archive/#{default["cloudstack"]["development"]["branch"]}.tar.gz"
+
 
 default["cloudstack"]["development"]["source_path"] = "/opt/cloudstack"
 default["cloudstack"]["development"]["log"] = "/opt/cloudstack/cloudstack-simulator.log"
