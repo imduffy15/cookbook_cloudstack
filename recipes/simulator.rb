@@ -56,7 +56,7 @@ end
 
 bash 'Deploy simulator configuration' do
   code <<-EOH
-    python -m marvin.deployDataCenter -i advanced.cfg
+    python -m marvin.deployDataCenter -i advanced.cfg || true
   EOH
   cwd "#{node["cloudstack"]["development"]["source_path"]}/setup/dev"
 end
