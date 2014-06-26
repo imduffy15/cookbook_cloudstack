@@ -69,15 +69,15 @@ end
 #  not_if { ::File.exists?(node["cloudstack"]["development"]["source_path"]) }
 #end
 
-remote_file "#{node["cloudstack"]["storage"]["temporary"]}/cloudstack.tar.gz" do
-  action :create_if_missing
-  source node["cloudstack"]["development"]["url"]
-end
+#remote_file "#{node["cloudstack"]["storage"]["temporary"]}/cloudstack.tar.gz" do
+#  action :create_if_missing
+#  source node["cloudstack"]["development"]["url"]
+#end
 
-bash 'Extract the cloudstack codebase' do
-  code <<-EOH
-    mkdir -p #{node["cloudstack"]["development"]["source_path"]}
-    tar xzf "#{node["cloudstack"]["storage"]["temporary"]}/cloudstack.tar.gz" -C #{node["cloudstack"]["development"]["source_path"]} --strip 1
-  EOH
-  not_if { ::File.exists?(node["cloudstack"]["development"]["source_path"]) }
-end
+#bash 'Extract the cloudstack codebase' do
+#  code <<-EOH
+#    mkdir -p #{node["cloudstack"]["development"]["source_path"]}
+#    tar xzf "#{node["cloudstack"]["storage"]["temporary"]}/cloudstack.tar.gz" -C #{node["cloudstack"]["development"]["source_path"]} --strip 1
+#  EOH
+#  not_if { ::File.exists?(node["cloudstack"]["development"]["source_path"]) }
+#end
