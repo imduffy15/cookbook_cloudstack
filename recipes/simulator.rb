@@ -3,8 +3,8 @@
 # Recipe:: simulator
 #
 
-include_recipe "cloudstack::database"
-include_recipe "cloudstack::development-environment"
+include_recipe 'cloudstack::database'
+include_recipe 'cloudstack::development-environment'
 
 template '/etc/init.d/cloudstack-simulator' do
   source 'cloudstack-simulator.erb'
@@ -20,7 +20,7 @@ bash 'Compile Cloudstack' do
     source /etc/profile.d/maven.sh
     mvn -Pimpatient -Dsimulator -DskipTests -Dcheckstyle.skip=true install -T C1.5
   EOH
-  cwd node["cloudstack"]["development"]["source_path"]
+  cwd node['cloudstack']['development']['source_path']
 end
 
 bash 'Compile Cloudstack (APIDOCS)' do
@@ -28,7 +28,7 @@ bash 'Compile Cloudstack (APIDOCS)' do
 	  source /etc/profile.d/maven.sh
 	  mvn install
   EOH
-  cwd "#{node["cloudstack"]["development"]["source_path"]}/tools/apidoc"
+  cwd "#{node['cloudstack']['development']['source_path']}/tools/apidoc"
 end
 
 bash 'Install Marvin' do
@@ -37,7 +37,7 @@ bash 'Install Marvin' do
     mvn generate-sources
     python setup.py install
   EOH
-  cwd "#{node["cloudstack"]["development"]["source_path"]}/tools/marvin"
+  cwd "#{node['cloudstack']['development']['source_path']}/tools/marvin"
 end
 
 bash 'Deploy simulator database' do
@@ -46,20 +46,20 @@ bash 'Deploy simulator database' do
     mvn -Pdeveloper -pl developer -Ddeploydb
     mvn -Pdeveloper -pl developer -Ddeploydb-simulator
   EOH
-  cwd node["cloudstack"]["development"]["source_path"]
+  cwd node['cloudstack']['development']['source_path']
 end
 
-service "cloudstack-simulator" do
+service 'cloudstack-simulator' do
   action :start
 end
 
 bash 'Deploy simulator configuration' do
   code <<-EOH
-    python -m marvin.deployDataCenter -i #{node["cloudstack"]["development"]["simulator"]["type"]}.cfg || true
+    python -m marvin.deployDataCenter -i #{node['cloudstack']['development']['simulator']['type']}.cfg || true
   EOH
-  cwd "#{node["cloudstack"]["development"]["source_path"]}/setup/dev"
+  cwd "#{node['cloudstack']['development']['source_path']}/setup/dev"
 end
 
-service "cloudstack-simulator" do
+service 'cloudstack-simulator' do
   action :stop
 end

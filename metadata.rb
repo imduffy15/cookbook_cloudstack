@@ -10,5 +10,5 @@ depends 'mysql'
 depends 'co-nfs'
 depends 'nat-router'
 
-recipe "cloudstack::default", "Installs and Configures services needed by Apache Cloudstack"
-recipe "cloudstack::sys-tmpl", "Preseeds cloudstack templates"
+recipe 'cloudstack::default', 'Installs and Configures services needed by Apache Cloudstack'
+recipe 'cloudstack::sys-tmpl', 'Preseeds cloudstack templates'

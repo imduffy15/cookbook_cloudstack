@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
-export M2_HOME=<%= @node["maven"]["install_path"] %> 
+export M2_HOME=<%= @node['maven']['install_path'] %>
 export M2_BIN=$M2_HOME/bin
-export MAVEN_OPTS="-Xmx1024m -XX:MaxPermSize=500m -Dmaven.repo.local=<%= @node["maven"]["repository"] %>"
+export MAVEN_OPTS="-Xmx1024m -XX:MaxPermSize=500m -Dmaven.repo.local=<%= @node['maven']['repository'] %>"
 
 export PATH=${PATH}:$M2_BIN
