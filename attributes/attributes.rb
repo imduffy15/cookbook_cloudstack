@@ -13,7 +13,13 @@ default['cloudstack']['hypervisors'] = {
 
 default['cloudstack']['management']['version'] = '4.3'
 default['cloudstack']['management']['repo'] = "http://cloudstack.apt-get.eu/rhel/#{default['cloudstack']['management']['version']}/"
+default['cloudstack']['management']['vhd-util'] = 'http://download.cloud.com.s3.amazonaws.com/tools/vhd-util'
 
+default['cloudstack']['management']['database']['user'] = 'cloud'
+default['cloudstack']['management']['database']['password'] = 'cloud'
+default['cloudstack']['management']['database']['deployuser'] = 'root'
+default['cloudstack']['management']['database']['management_key'] = 'cloud'
+default['cloudstack']['management']['database']['database_key'] = 'cloud'
 
 default['cloudstack']['storage']['temporary'] = Chef::Config['file_cache_path']
 default['cloudstack']['storage']['primary'] = '/exports/primary'
@@ -22,7 +28,7 @@ default['cloudstack']['storage']['secondary'] = '/exports/secondary'
 default['cloudstack']['systemvms'] = [
     {
         'hypervisor' => 'XenServer',
-        'url' => 'http://jenkins.buildacloud.org/view/4.4/job/cloudstack-4.4-systemvm/lastSuccessfulBuild/artifact/tools/appliance/dist/systemvmtemplate-unknown-xen.vhd.bz2',
+        'url' => 'http://10.0.2.2:8000/systemvmtemplate-unknown-xen.vhd.bz2',
     }
 ]
 

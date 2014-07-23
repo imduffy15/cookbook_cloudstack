@@ -16,6 +16,9 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
   config.omnibus.chef_version = :latest
 
+  # Port forward Tomcat
+  config.vm.network 'forwarded_port', guest: 8080, host: 8080
+
   if Vagrant.has_plugin?('vagrant-cachier')
     config.cache.scope = :box
     config.cache.auto_detect = true
