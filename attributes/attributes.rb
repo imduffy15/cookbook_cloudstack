@@ -15,7 +15,7 @@ default['cloudstack']['management']['version'] = '4.3'
 default['cloudstack']['management']['repo'] = "http://cloudstack.apt-get.eu/rhel/#{default['cloudstack']['management']['version']}/"
 default['cloudstack']['management']['vhd-util'] = 'http://download.cloud.com.s3.amazonaws.com/tools/vhd-util'
 
-default['cloudstack']['management']['marvin-url'] = 'http://jenkins.buildacloud.org/job/cloudstack-marvin-master/lastSuccessfulBuild/artifact/tools/marvin/dist/Marvin-0.1.0-3953.tar.gz'
+default['cloudstack']['management']['marvin-url'] = 'http://jenkins.buildacloud.org/job/cloudstack-marvin-master/lastSuccessfulBuild/artifact/tools/marvin/dist/Marvin-0.1.0-3958.tar.gz'
 
 default['cloudstack']['management']['database']['user'] = 'cloud'
 default['cloudstack']['management']['database']['password'] = 'cloud'

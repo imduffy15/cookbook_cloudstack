@@ -46,14 +46,14 @@ end
 bash 'setup cloudstack' do
 	code <<-EOH
 		/usr/bin/cloudstack-setup-management
-	EOH
+	  while [ `curl -s -o /dev/null -w "%{http_code}" http://localhost:8080/client/` != "200" ]; do :; done
+  EOH
 	not_if { ::File.exists?("/etc/cloudstack/management/tomcat6.conf") }
 end
 
 bash 'enable the integration api port' do
   code <<-EOH
-    mysql -u#{node['cloudstack']['management']['database']['user']} -p#{node['cloudstack']['management']['database']['password']} -e "update cloud.configuration set value=8096 where name='integration.api.port'"
-    /etc/init.d/cloudstack-management restart
+    echo "update cloud.configuration set value='8096' where name='integration.api.port'" | mysql -u#{node['cloudstack']['management']['database']['user']} -p#{node['cloudstack']['management']['database']['password']}
   EOH
 end
 
