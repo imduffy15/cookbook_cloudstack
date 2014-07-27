@@ -59,3 +59,5 @@ default['mysql']['server_root_password'] = ''
 default['mysql']['server_repl_password'] = ''
 default['mysql']['server_debian_password'] = ''
 default['mysql']['allow_remote_root'] = true
+
+default["python"]["install_method"] = 'source'

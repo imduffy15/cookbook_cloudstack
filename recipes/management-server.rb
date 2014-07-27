@@ -11,8 +11,19 @@ template '/etc/yum.repos.d/cloudstack.repo' do
   action :create
 end
 
-package 'cloudstack-management' do
-  action :install
+bash 'Install Development tools' do
+  code <<-EOH
+      yum groupinstall "Development tools" -y
+  EOH
+  not_if "yum grouplist installed | grep 'Development tools'"
+end
+
+include_recipe 'python::default'
+
+%w{cloudstack-management}.each do |pkg|
+  package pkg do
+    action :install
+  end
 end
 
 include_recipe 'cloudstack::database'
@@ -37,4 +48,11 @@ bash 'setup cloudstack' do
 		/usr/bin/cloudstack-setup-management
 	EOH
 	not_if { ::File.exists?("/etc/cloudstack/management/tomcat6.conf") }
+end
+
+bash 'enable the integration api port' do
+  code <<-EOH
+    mysql -u#{node['cloudstack']['management']['database']['user']} -p#{node['cloudstack']['management']['database']['password']} -e "update cloud.configuration set value=8096 where name='integration.api.port'"
+    /etc/init.d/cloudstack-management restart
+  EOH
 end
