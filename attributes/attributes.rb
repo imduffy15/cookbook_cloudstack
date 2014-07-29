@@ -15,7 +15,7 @@ default['cloudstack']['management']['version'] = '4.3'
 default['cloudstack']['management']['repo'] = "http://cloudstack.apt-get.eu/rhel/#{default['cloudstack']['management']['version']}/"
 default['cloudstack']['management']['vhd-util'] = 'http://download.cloud.com.s3.amazonaws.com/tools/vhd-util'
 
-default['cloudstack']['management']['marvin-url'] = 'http://jenkins.buildacloud.org/job/cloudstack-marvin-master/lastSuccessfulBuild/artifact/tools/marvin/dist/Marvin-0.1.0-3958.tar.gz'
+default['cloudstack']['management']['marvin-url'] = 'http://ianduffy.ie/Marvin-0.1.0-4001.tar.gz'
 
 default['cloudstack']['management']['database']['user'] = 'cloud'
 default['cloudstack']['management']['database']['password'] = 'cloud'
@@ -30,7 +30,7 @@ default['cloudstack']['storage']['secondary'] = '/exports/secondary'
 default['cloudstack']['systemvms'] = [
     {
         'hypervisor' => 'XenServer',
-        'url' => 'http://10.0.2.2:8000/systemvmtemplate-unknown-xen.vhd.bz2',
+        'url' => 'http://jenkins.buildacloud.org/job/build-systemvm-master/lastSuccessfulBuild/artifact/tools/appliance/dist/systemvmtemplate-unknown-xen.vhd.bz2',
     }
 ]
 

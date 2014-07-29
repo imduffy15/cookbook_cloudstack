@@ -43,18 +43,24 @@ bash 'initialize cloudstack databases' do
 	EOH
 end
 
+cookbook_file 'import.sql' do
+  action :create
+  mode 0755
+  path "#{node['cloudstack']['storage']['temporary']}/import.sql"
+end
+
+bash 'import custom database settings' do
+  code <<-EOH
+    mysql -u#{node['cloudstack']['management']['database']['user']} -p#{node['cloudstack']['management']['database']['password']} < #{node['cloudstack']['storage']['temporary']}/import.sql
+  EOH
+end
+
 bash 'setup cloudstack' do
 	code <<-EOH
 		/usr/bin/cloudstack-setup-management
 	  while [ `curl -s -o /dev/null -w "%{http_code}" http://localhost:8080/client/` != "200" ]; do :; done
   EOH
 	not_if { ::File.exists?("/etc/cloudstack/management/tomcat6.conf") }
-end
-
-bash 'enable the integration api port' do
-  code <<-EOH
-    echo "update cloud.configuration set value='8096' where name='integration.api.port'" | mysql -u#{node['cloudstack']['management']['database']['user']} -p#{node['cloudstack']['management']['database']['password']}
-  EOH
 end
 
 bash 'Install Cloudstack Marvin' do
