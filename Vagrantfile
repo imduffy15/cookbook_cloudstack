@@ -34,6 +34,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     chef.cookbooks_path = ['cookbooks']
 
     chef.run_list = [
+        'recipe[nat-router]',
         'recipe[cloudstack::management-server]'
     ]
 

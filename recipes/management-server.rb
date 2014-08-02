@@ -18,13 +18,13 @@ bash 'Install Development tools' do
   not_if "yum grouplist installed | grep 'Development tools'"
 end
 
-include_recipe 'python::default'
-
 %w{cloudstack-management}.each do |pkg|
   package pkg do
     action :install
   end
 end
+
+include_recipe 'python::default'
 
 include_recipe 'cloudstack::database'
 
@@ -32,8 +32,9 @@ include_recipe 'cloudstack::sys-tmpl'
 
 include_recipe 'cloudstack::storage'
 
-remote_file '/usr/share/cloudstack-common/scripts/vm/hypervisor/xenserver' do
+remote_file '/usr/share/cloudstack-common/scripts/vm/hypervisor/xenserver/vhd-util' do
   action :create_if_missing
+  mode 0755
   source node['cloudstack']['management']['vhd-util']
 end
 
