@@ -62,13 +62,6 @@ template '/etc/profile.d/maven.sh' do
   group 'root'
 end
 
-#bash 'Pull down the cloudstack codebase' do
-#  code <<-EOH
-#    git clone -b #{node["cloudstack"]["development"]["branch"]} --depth 1 #{node["cloudstack"]["development"]["repository"]} #{node["cloudstack"]["development"]["source_path"]}
-#  EOH
-#  not_if { ::File.exists?(node["cloudstack"]["development"]["source_path"]) }
-#end
-
 remote_file "#{node["cloudstack"]["storage"]["temporary"]}/cloudstack.tar.gz" do
   action :create_if_missing
   source node["cloudstack"]["development"]["url"]
