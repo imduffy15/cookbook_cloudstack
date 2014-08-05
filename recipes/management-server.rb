@@ -69,3 +69,15 @@ bash 'Install Cloudstack Marvin' do
     /usr/local/bin/pip2.7 install #{node['cloudstack']['management']['marvin-url']} --allow-external mysql-connector-python
   EOH
 end
+
+cookbook_file 'config.cfg' do
+  action :create
+  mode 0755
+  path "#{node['cloudstack']['storage']['temporary']}/config.cfg"
+end
+
+bash 'Run Marvin' do
+  code <<-EOH
+    /usr/local/bin/python2.7 -m marvin.deployDataCenter -i #{node['cloudstack']['storage']['temporary']}/config.cfg
+  EOH
+end
