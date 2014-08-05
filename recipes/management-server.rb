@@ -78,6 +78,6 @@ end
 
 bash 'Run Marvin' do
   code <<-EOH
-    /usr/local/bin/python2.7 -m marvin.deployDataCenter -i #{node['cloudstack']['storage']['temporary']}/config.cfg
+    /usr/local/bin/python2.7 -m marvin.deployDataCenter -i #{node['cloudstack']['storage']['temporary']}/config.cfg || true
   EOH
 end
