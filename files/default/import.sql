@@ -17,4 +17,4 @@ INSERT INTO `cloud`.`configuration` (instance, name, value) VALUE('DEFAULT', 'se
 UPDATE `cloud`.`configuration` SET value='10' where name = 'storage.overprovisioning.factor';
 UPDATE `cloud`.`configuration` SET value='10' where name = 'cpu.overprovisioning.factor';
 UPDATE `cloud`.`configuration` SET value='10' where name = 'mem.overprovisioning.factor';
-UPDATE `cloud`.`vm_template` SET unique_name="Tiny linux",name="Tiny linux",url="http://10.0.2.2/ttylinux_pv.vhd",checksum="046e134e642e6d344b34648223ba4bc1",display_text="Tiny linux" where id=5;
+UPDATE `cloud`.`vm_template` SET unique_name="Debian 7",name="Debian 7",url="http://dl.openvm.eu/cloudstack/debian/vanilla/7/x86_64/debian-wheezy-7.5.0-amd64-xen.vhd.bz2",checksum="8ea3d5c9afc005a0baaaea48164122c3",display_text="Debian 7" where id=5;
