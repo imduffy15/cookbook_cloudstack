@@ -23,6 +23,8 @@ default['cloudstack']['management']['database']['deployuser'] = 'root'
 default['cloudstack']['management']['database']['management_key'] = 'cloud'
 default['cloudstack']['management']['database']['database_key'] = 'cloud'
 
+default['cloudstack']['config']['path'] = '/vagrant/config.cfg'
+
 default['cloudstack']['storage']['temporary'] = Chef::Config['file_cache_path']
 default['cloudstack']['storage']['primary'] = '/exports/primary'
 default['cloudstack']['storage']['secondary'] = '/exports/secondary'

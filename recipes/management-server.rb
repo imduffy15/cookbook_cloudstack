@@ -70,14 +70,8 @@ bash 'Install Cloudstack Marvin' do
   EOH
 end
 
-cookbook_file 'config.cfg' do
-  action :create
-  mode 0755
-  path "#{node['cloudstack']['storage']['temporary']}/config.cfg"
-end
-
 bash 'Run Marvin' do
   code <<-EOH
-    /usr/local/bin/python2.7 -m marvin.deployDataCenter -i #{node['cloudstack']['storage']['temporary']}/config.cfg || true
+    /usr/local/bin/python2.7 -m marvin.deployDataCenter -i #{node['cloudstack']['config']['path']} || true
   EOH
 end
