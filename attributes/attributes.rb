@@ -32,7 +32,7 @@ default['cloudstack']['storage']['secondary'] = '/exports/secondary'
 default['cloudstack']['systemvms'] = [
     {
         'hypervisor' => 'XenServer',
-        'url' => 'http://jenkins.buildacloud.org/job/build-systemvm64-master/lastSuccessfulBuild/artifact/tools/appliance/dist/systemvm64template-master-421-xen.vhd.bz2',
+        'url' => 'http://jenkins.buildacloud.org/job/build-systemvm64-master/421/artifact/tools/appliance/dist/systemvm64template-master-421-xen.vhd.bz2',
     }
 ]
 
