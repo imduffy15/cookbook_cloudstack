@@ -4,7 +4,7 @@ maintainer_email 'duffy@apache.org'
 license 'Apache 2.0'
 description 'Installs/Configures cloudstack'
 long_description 'Installs/Configures cloudstack'
-version '0.0.5'
+version '0.0.6'
 
 depends 'mysql'
 depends 'co-nfs'
