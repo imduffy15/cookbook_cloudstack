@@ -66,7 +66,7 @@ end
 
 bash 'Install Cloudstack Marvin' do
   code <<-EOH
-    /usr/local/bin/pip2.7 install #{node['cloudstack']['management']['marvin-url']} --allow-external mysql-connector-python
+    /usr/local/bin/pip2.7 install cloudstack-marvin --allow-external mysql-connector-python
   EOH
 end
 
