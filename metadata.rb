@@ -6,7 +6,7 @@ description 'Installs/Configures cloudstack'
 long_description 'Installs/Configures cloudstack'
 version '0.0.8'
 
-depends 'mysql'
+depends 'mysql', '= 5.6.1'
 depends 'co-nfs'
 depends 'python'
 depends 'nat-router'
