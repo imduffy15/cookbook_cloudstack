@@ -30,7 +30,7 @@ default['cloudstack']['storage']['secondary'] = '/exports/secondary'
 default['cloudstack']['systemvms'] = [
     {
         'hypervisor' => 'XenServer',
-        'url' => 'http://packages.shapeblue.com/systemvmtemplate/4.3/4.3.1/systemvmtemplate-2014-11-04-4.3.1-xen.vhd.bz2',
+        'url' => 'http://packages.shapeblue.com/systemvmtemplate/4.3/systemvmtemplate-4.3-xen.vhd.bz2',
     }
 ]
 
